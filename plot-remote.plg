@@ -45,19 +45,19 @@ L2  = 256*1024          # 256 kB L2 cache
 L3  =   4*1024*1024     # 4 MB L3 cache
 RAM = 6*1024*1024*1024  # free RAM at the time of measurement
 
-set output "data.png"
-plot 'list_traversal.data' u 1:2 t 'ns/elem' w lp ls 1,
+set output "../data/ram-bench/data-remote.png"
+plot '../data/ram-bench/list-traversal-remote.data' u 1:2 t 'ns/elem' w lp ls 1,
 
 
-set output "fit.png"
+set output "../data/ram-bench/fit-remote.png"
 curve(x) = 0.01*(sqrt(x))  # Based on the Bekenstein bound
-plot 'list_traversal.data' u 1:2 t 'ns/elem' w lp ls 1, \
+plot '../data/ram-bench/list-traversal-remote.data' u 1:2 t 'ns/elem' w lp ls 1, \
       curve(x) t "O(sqrt(N))" w lp ls 2
 
 
-set output "caches.png"
+set output "../data/ram-bench/caches-remote.png"
 set arrow from (xf*L1),ymin to (xf*L1),ymax nohead  # L1
 set arrow from (xf*L2),ymin to (xf*L2),ymax nohead  # L2
 set arrow from (xf*L3),ymin to (xf*L3),ymax nohead  # L3
 set arrow from (xf*RAM),ymin to (xf*RAM),ymax nohead  # RAM
-plot 'list_traversal.data' u 1:2 t 'ns/elem'    w lp ls 1
+plot '../data/ram-bench/list-traversal-remote.data' u 1:2 t 'ns/elem'    w lp ls 1
